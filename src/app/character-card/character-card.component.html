@@ -1,0 +1,3 @@
+<div (click)="flip()" class="card">
+    <img [ngClass]="{'flipped': isFlipped |async}" src="{{imgSrc}}" alt="">
+</div>
