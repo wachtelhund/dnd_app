@@ -1,8 +1,14 @@
 <div (click)="flip()" class="card">
     <img class="card-img" [ngClass]="{'flipped': isFlipped | async}" src="{{imgSrc}}" alt="">
+    <img [ngClass]="{'flipped-monster': isFlipped |async}" class="monsterImg" src="{{heroImageSrc}}" alt="">
     <div (mouseenter)="showDetails($event)" (mouseleave)="hideDetails($event)" class="details" *ngIf="!(isFlipped | async)">
         <h4 class="title">{{data?.class?.name}}</h4>
     </div>
 </div>
 <div *ngIf="showDetailsModal" class="modal">
+    <h4>{{data?.race?.name}}</h4>
+    <h4 *ngIf="data?.spells?.results?.length">Spells: </h4>
+    <p *ngFor="let spell of data?.spells?.results">{{spell.name}}</p>
+    <h4 *ngIf="data?.features?.results?.length">Features: </h4>
+    <p *ngFor="let feature of data?.features?.results">{{feature.name}}</p>
 </div>

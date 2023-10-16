@@ -1,4 +1,8 @@
-<app-generation-form (onGenerateMonsters)="onGenerateMonsters($event)"></app-generation-form>
+<app-generation-form [formEntries]="monsterFormEntries" (onGenerateSubmit)="onGenerateMonsters($event)"></app-generation-form>
+<app-generation-form [formEntries]="characterFormEntries" (onGenerateSubmit)="onGenerateCharacter($event)"></app-generation-form>
 <div>
   <app-monster-card [data]="monster" *ngFor="let monster of monsters"></app-monster-card>
+</div>
+<div>
+  <app-character-card *ngIf="character.getCharacter" [data]="character"></app-character-card>
 </div>

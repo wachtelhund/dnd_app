@@ -1,16 +1,9 @@
-<form action="#" class="generation-form">
+<div action="#" class="generation-form">
     <div class="monster-form">
-        <div>
-            <label for="amount">Number of monsters: </label>
-            <input type="number" id="amount" [formControl]="amountOfMonsters" name="amount">
+        <div *ngFor="let entry of formEntries">
+            <label for="{{entry.label}}">{{entry.label}}</label>
+            <input type="{{entry.type}}" id="{{entry.label}}" [formControl]="entry.control" name="{{entry.label}}">
         </div>
-        <div>
-            <label for="rating">Challenge rating: </label>
-            <input type="number" id="rating" [formControl]="challengeRating" name="rating">
-        </div>
-        <button (click)="onGenerateEncounter()">Generate monsters</button>
+        <button (click)="onGenerate()">Generate</button>
     </div>
-    <div>
-        <button (click)="onGenerateCharacter()">Generate a guy</button>
-    </div>
-</form>
+</div>

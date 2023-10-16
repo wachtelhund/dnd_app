@@ -10,6 +10,7 @@ import { Character } from 'dnd_api_helper/build/character/Character';
 export class CharacterCardComponent extends CardComponent<Character> {
   cardBacksideSrc = 'assets/images/character_card_backside.png';
   cardFrontsideSrc = 'assets/images/frontside.png';
+  heroImageSrc = 'assets/images/hero.png';
 
   constructor() {
     super();

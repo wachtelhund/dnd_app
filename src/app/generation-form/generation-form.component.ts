@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { Form, FormControl, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GenerationRequest } from './GenerationRequest';
 import { filter, tap } from 'rxjs';
+import { FormEntry, ValidationSpan } from './FormEntry';
 
 @Component({
   selector: 'app-generation-form',
@@ -9,13 +10,19 @@ import { filter, tap } from 'rxjs';
   styleUrls: ['./generation-form.component.scss']
 })
 export class GenerationFormComponent {
-  @Output() onGenerateMonsters = new EventEmitter<GenerationRequest>();
-  amountOfMonsters = new FormControl(1, [Validators.min(1), Validators.max(5)]);
-  challengeRating = new FormControl(1, [Validators.min(1), Validators.max(25)]);
+  @Output() onGenerateSubmit = new EventEmitter<GenerationRequest>();
+  @Input('formEntries') formEntries: FormEntry[] = [];
+  formGroup = new FormGroup({});
+  // amountOfMonsters = new FormControl(1, [Validators.min(1), Validators.max(5)]);
+  // challengeRating = new FormControl(1, [Validators.min(1), Validators.max(25)]);
 
   ngOnInit() {
-    this.watchNumericalFormControlValid(this.amountOfMonsters, { lowerLimit: 1, upperLimit: 5 });
-    this.watchNumericalFormControlValid(this.challengeRating, { lowerLimit: 1, upperLimit: 25 });
+    this.formEntries.forEach(formEntry => {
+      this.formGroup.addControl(formEntry.controlName, formEntry.control);
+    });
+    this.formEntries.forEach(formEntry => {
+      this.watchNumericalFormControlValid(formEntry.control, formEntry.validationSpan);
+    });
   }
 
   watchNumericalFormControlValid(control: FormControl, validationSpan: ValidationSpan) {
@@ -31,13 +38,9 @@ export class GenerationFormComponent {
     });
   }
 
-  onGenerateEncounter() {
-    if (this.amountOfMonsters.invalid || this.challengeRating.invalid) {
-      alert('Invalid input');
-    }
-    this.onGenerateMonsters.emit({
-      amountOfMonsters: this.amountOfMonsters.value || 1,
-      challengeRating: this.challengeRating.value || 1,
+  onGenerate() {
+    this.onGenerateSubmit.emit({
+      formValue: this.formGroup.value
     });
   }
 
@@ -46,7 +49,3 @@ export class GenerationFormComponent {
   }
 }
 
-interface ValidationSpan {
-  upperLimit: number;
-  lowerLimit: number;
-}

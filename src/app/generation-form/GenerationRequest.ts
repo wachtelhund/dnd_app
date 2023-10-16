@@ -1,4 +1,10 @@
+import { FormGroup } from "@angular/forms";
+
 export interface GenerationRequest {
-    amountOfMonsters?: number;
-    challengeRating?: number;
+    formValue: Partial<{
+        amountOfMonsters?: number;
+        challengeRating?: number;
+        amountOfSpells?: number;
+        amountOfFeatures?: number;
+    }>;
 }
