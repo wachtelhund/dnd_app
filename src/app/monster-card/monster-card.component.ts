@@ -9,7 +9,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./monster-card.component.scss']
 })
 export class MonsterCardComponent extends CardComponent<MonsterResponse> {
-  monsterImg = "http://www.dnd5eapi.co/api/images/monsters/aboleth.png";
+  // monsterImg = "http://www.dnd5eapi.co/api/images/monsters/aboleth.png";
+  monsterImg = this.data?.image || "assets/images/missing.jpg";
 
   constructor(private http: HttpClient) {
     super();
@@ -18,17 +19,19 @@ export class MonsterCardComponent extends CardComponent<MonsterResponse> {
       frontside: 'assets/images/frontside.png',
       backside: 'assets/images/monster_card_backside.png'
     })
-  }
-
-  ngOnInit() {
     this.validateMonsterImg();
   }
 
-  private async validateMonsterImg() {
-    this.http.get(this.monsterImg).subscribe((res) => {
-      this.monsterImg = this.monsterImg;
-    }, (error: HttpErrorResponse) => {
-      this.monsterImg = "http://www.dnd5eapi.co/api/images/monsters/aboleth.png";
-    })
+  async validateMonsterImg() {
+    if (this.data?.image.includes('undefined')) {
+      return;
+    } else {
+      this.monsterImg = this.data?.image || "assets/images/missing.jpg";
+    }
   }
+
+  ngAfterViewInit() {
+    this.validateMonsterImg();
+  }
+
 }

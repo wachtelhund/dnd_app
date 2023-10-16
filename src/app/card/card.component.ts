@@ -6,14 +6,15 @@ import { CardSources } from './CardSources';
 
 @Component({
   selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  styleUrls: ['./card.component.scss'],
+  template: ``,
 })
 export abstract class CardComponent<T> {
   @Input() data!: T | null;
   isFlipped = new BehaviorSubject<boolean>(true);
   imgSrc: String = '';
   imgSources: CardSources | null = null;
+  showDetailsModal = false;
 
 
   constructor() {
@@ -44,6 +45,14 @@ export abstract class CardComponent<T> {
         this.imgSrc = this.imgSources?.frontside || '';
       }
     }, 50);
+  }
+
+  showDetails($event: MouseEvent) {
+    this.showDetailsModal = true;
+  }
+
+  hideDetails($event: MouseEvent) {
+    this.showDetailsModal = false;
   }
 
 }

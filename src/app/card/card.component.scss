@@ -1,0 +1,70 @@
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    top: 0;
+}
+
+.card {
+    width: 200px;
+    height: 280px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.card > * {
+    transition: all 200ms;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.flipped-monster {
+    transition: all 200ms;
+    transform: rotateY(180deg);
+}
+
+.monsterImg {
+    position: relative;
+    bottom: 98%;
+    width: 99%;
+    left: 2.5%;
+    max-width: 180px;
+    max-height: 120px;
+    z-index: -100;
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    bottom: 80%;
+    left: 10%;
+    width: 80%;
+    z-index: 100;
+}
+
+.modal {
+    position: absolute;
+    background-color: beige;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px inset black;
+    z-index: 1000;
+    max-width: 500px;
+    max-height: 500px;
+    padding: 10px;
+
+    & > * {
+        margin: 5px;
+        margin-top: 0px;
+    }
+}

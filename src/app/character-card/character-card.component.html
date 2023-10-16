@@ -1,3 +1,8 @@
 <div (click)="flip()" class="card">
-    <img [ngClass]="{'flipped': isFlipped |async}" src="{{imgSrc}}" alt="">
+    <img class="card-img" [ngClass]="{'flipped': isFlipped | async}" src="{{imgSrc}}" alt="">
+    <div (mouseenter)="showDetails($event)" (mouseleave)="hideDetails($event)" class="details" *ngIf="!(isFlipped | async)">
+        <h4 class="title">{{data?.class?.name}}</h4>
+    </div>
+</div>
+<div *ngIf="showDetailsModal" class="modal">
 </div>
