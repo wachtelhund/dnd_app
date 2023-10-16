@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EncounterCreator } from 'dnd_api_helper';
 import { MonsterResponse } from 'dnd_api_helper/build/types/monsters/MonstersResponse';
+import { GenerationRequest } from './generation-form/GenerationRequest';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,9 @@ export class AppComponent {
   title = 'dnd_app';
 
   constructor() {
-    this.generateMonsters(5);
   }
 
-  private async generateMonsters(numberOfMonsters: number) {
-    this.monsters = await this.encounterCreator.getRandomMonsters(numberOfMonsters);
+  async onGenerateMonsters($event: GenerationRequest) {
+    this.monsters = await this.encounterCreator.getRandomMonsters($event.amountOfMonsters, $event.challengeRating);
   }
-
 }

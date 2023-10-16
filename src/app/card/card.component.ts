@@ -25,8 +25,9 @@ export abstract class CardComponent<T> {
   
   flip() {
     this.isFlipped.next(!this.isFlipped.value);
-    console.log(this.isFlipped.value);
-    
+    if (this.isFlipped.value) {
+      this.showDetailsModal = false;   
+    }
   }
 
   getData(): T {
