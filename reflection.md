@@ -1,0 +1,2 @@
+# Chapter 2, Naming
+Looking at the CardComponent there are some minor things that could be improved. An example would be the field imgSrc, which doesn't actually say anything about what type of image it's expected to contain and it could easily be confused with the imgSources field. In this case it represent the card image currently being displayed (frontside/backside). A better name would have been currentImgSrc etc.
