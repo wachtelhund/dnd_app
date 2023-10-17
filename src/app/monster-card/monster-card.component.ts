@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MonsterResponse } from 'dnd_api_helper/build/types/monsters/MonstersResponse';
 import { CardComponent } from '../card/card.component';
+import { CardSource } from '../card/CardSource';
 
 @Component({
   selector: 'app-monster-card',
@@ -13,11 +14,15 @@ export class MonsterCardComponent extends CardComponent<MonsterResponse> {
 
   constructor() {
     super();
-    this.setImageSrc();
-    this.setCardImageSources({
-      frontside: 'assets/images/frontside.png',
-      backside: 'assets/images/monster_card_backside.png'
-    })
+    super.setImageSrc();
+    super.setCardImageSources(new CardSource(
+      'assets/images/frontside.png',
+      'assets/images/monster_card_backside.png'
+    ))
+    this.setMonsterImg();
+  }
+
+  ngAfterViewInit() {
     this.setMonsterImg();
   }
 
@@ -29,7 +34,4 @@ export class MonsterCardComponent extends CardComponent<MonsterResponse> {
     }
   }
 
-  ngAfterViewInit() {
-    this.setMonsterImg();
-  }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { Character } from 'dnd_api_helper/build/character/Character';
+import { CardSource } from '../card/CardSource';
 
 @Component({
   selector: 'app-character-card',
@@ -14,10 +15,10 @@ export class CharacterCardComponent extends CardComponent<Character> {
 
   constructor() {
     super();
-    this.setImageSrc();
-    this.setCardImageSources({
-      frontside: this.cardFrontsideSrc,
-      backside: this.cardBacksideSrc
-    })
+    super.setImageSrc();
+    super.setCardImageSources(new CardSource(
+      this.cardFrontsideSrc,
+      this.cardBacksideSrc
+    ))
   }
 }

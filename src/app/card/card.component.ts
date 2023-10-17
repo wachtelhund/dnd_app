@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Character } from 'dnd_api_helper/build/character/Character';
-import { MonsterResponse } from 'dnd_api_helper/build/types/monsters/MonstersResponse';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { CardSources } from './CardSources';
+import { CardSource } from './CardSource';
 
 @Component({
   selector: 'app-card',
@@ -12,8 +10,8 @@ import { CardSources } from './CardSources';
 export abstract class CardComponent<T> {
   @Input() data!: T | null;
   isFlipped = new BehaviorSubject<boolean>(true);
-  imgSrc: String = '';
-  imgSources: CardSources | null = null;
+  currentImgSrc: String = '';
+  imgSources: CardSource | null = null;
   showDetailsModal = false;
 
 
@@ -34,16 +32,16 @@ export abstract class CardComponent<T> {
     return this.data || {} as T;
   }
 
-  setCardImageSources(sources: CardSources) {
+  setCardImageSources(sources: CardSource) {
     this.imgSources = sources;
   }
 
   setImageSrc(): void {
     setTimeout(() => {
       if (this.isFlipped.value) {
-        this.imgSrc = this.imgSources?.backside || '';
+        this.currentImgSrc = this.imgSources?.backside || '';
       } else {
-        this.imgSrc = this.imgSources?.frontside || '';
+        this.currentImgSrc = this.imgSources?.frontside || '';
       }
     }, 50);
   }

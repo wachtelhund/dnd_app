@@ -1,5 +1,5 @@
 <div (click)="flip()" class="card">
-    <img class="card-img" [ngClass]="{'flipped': isFlipped | async}" src="{{imgSrc}}" alt="">
+    <img class="card-img" [ngClass]="{'flipped': isFlipped | async}" src="{{currentImgSrc}}" alt="">
     <img [ngClass]="{'flipped-monster': isFlipped |async}" class="monsterImg" src="{{heroImageSrc}}" alt="">
     <div (mouseenter)="showDetails($event)" (mouseleave)="hideDetails($event)" class="details" *ngIf="!(isFlipped | async)">
         <h4 class="title">{{data?.class?.name}}</h4>

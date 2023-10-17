@@ -14,6 +14,11 @@ import { Character } from 'dnd_api_helper/build/character/Character';
 export class AppComponent {
   encounterCreator = new EncounterCreator();
   characterCreator = new CharacterCreator();
+  title = 'dnd_app';
+
+  /**
+   * Used in the template to generate the form.
+   */
   monsterFormEntries = [
     {
       controlName: 'amountOfMonsters',
@@ -36,6 +41,10 @@ export class AppComponent {
       type: 'number'
     }
   ] as FormEntry[];
+
+  /**
+   * Used in the template to generate the form.
+   */
   characterFormEntries = [
       {
         controlName: 'amountOfSpells',
@@ -58,15 +67,21 @@ export class AppComponent {
         type: 'number'
       }
   ] as FormEntry[];
+
   monsters: MonsterResponse[] = [];
   character: Character = {} as Character;
-  title = 'dnd_app';
 
   async onGenerateMonsters($event: GenerationRequest) {
-    this.monsters = await this.encounterCreator.getRandomMonsters($event.formValue.amountOfMonsters, $event.formValue.challengeRating);
+    this.monsters = await this.encounterCreator.getRandomMonsters(
+        $event.formValue.amountOfMonsters,
+        $event.formValue.challengeRating
+      );
   }
 
   async onGenerateCharacter($event: GenerationRequest) {
-    this.character = await this.characterCreator.generateRandomizedCharacter($event.formValue.amountOfSpells, $event.formValue.amountOfFeatures);
+    this.character = await this.characterCreator.generateRandomizedCharacter(
+        $event.formValue.amountOfSpells,
+        $event.formValue.amountOfFeatures
+      );
   }
 }
