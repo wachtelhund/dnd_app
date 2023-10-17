@@ -13,8 +13,6 @@ export class GenerationFormComponent {
   @Output() onGenerateSubmit = new EventEmitter<GenerationRequest>();
   @Input('formEntries') formEntries: FormEntry[] = [];
   formGroup = new FormGroup({});
-  // amountOfMonsters = new FormControl(1, [Validators.min(1), Validators.max(5)]);
-  // challengeRating = new FormControl(1, [Validators.min(1), Validators.max(25)]);
 
   ngOnInit() {
     this.formEntries.forEach(formEntry => {
@@ -42,10 +40,6 @@ export class GenerationFormComponent {
     this.onGenerateSubmit.emit({
       formValue: this.formGroup.value
     });
-  }
-
-  onGenerateCharacter() {
-    alert('Not implemented yet');
   }
 }
 

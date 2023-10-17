@@ -1,5 +1,11 @@
-<app-generation-form [formEntries]="monsterFormEntries" (onGenerateSubmit)="onGenerateMonsters($event)"></app-generation-form>
-<app-generation-form [formEntries]="characterFormEntries" (onGenerateSubmit)="onGenerateCharacter($event)"></app-generation-form>
+<div class="form-container">
+  <app-generation-form [formEntries]="monsterFormEntries" (onGenerateSubmit)="onGenerateMonsters($event)">
+    <h2>Generate Monsters!</h2>
+  </app-generation-form>
+  <app-generation-form [formEntries]="characterFormEntries" (onGenerateSubmit)="onGenerateCharacter($event)">
+    <h2>Generate Character!</h2>
+  </app-generation-form>
+</div>
 <div>
   <app-monster-card [data]="monster" *ngFor="let monster of monsters"></app-monster-card>
 </div>
