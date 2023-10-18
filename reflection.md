@@ -27,5 +27,38 @@ This chapter was interesting because it went into terroitory which most of us (t
 
 # Chapter 7, Error Handling
 
+This chapter contains some very important notes and rules to create a smooth flow for handling errors throughout the application. Starting out, there wasn't really any error handling in my module, even though I was handling some very error prone code (api calls etc). After reading the chapter I've refactored my module code and followed the rules, User exceptions rather than return codes, don't return null and provide context with exceptions. The asyncrhonous code in the module now throws errors and conveys important information about what the code was doing as something went wrong with these errors.
+
+![image](https://github.com/wachtelhund/dnd_app/assets/85429142/34abbf23-bc22-4ee3-83e9-78d8935e89e4)
+
+![image](https://github.com/wachtelhund/dnd_app/assets/85429142/3563c0ea-a6d1-49dc-99fd-4d1d66017ecf)
+
+# Chapter 8, Boundaries
+
+The rules about Boundaries is something that is very relevant in this assignment, as even though I'm the one who developed the module being used in the application it can still be seen as third party software. One of the first sections of the chapter claims there is a natural tension between providers and consumers of interfaces. This is something I've had to struggle a bit with figuring out since my project was done using typescript and is handling somewhat large data objects. I can definately see some issues regarding change in both the api which the module uses, aswell as in my app which uses the module. Especially since I use a lot of types from the module in my app in different places.
+
+![image](https://github.com/wachtelhund/dnd_app/assets/85429142/ba8a03b0-f847-44f5-a427-f9e0a9264ded)
+
+![image](https://github.com/wachtelhund/dnd_app/assets/85429142/b4f917b8-8230-4bc9-b76f-5469f45d402c)
+
+# Chapter 9, Unit Test
+
+Unit Testing is something that I'm not yet knowledgeable about since I'm yet to start the course about unit testing. However reading the chapter about unit testing I'm entrigued by the idea of The Three Laws of TDD, specifically the part about writing you tests before producing any production code. I think this would allow you to think in a more abstract manner, sort of like a black box, before actually implementing the functionality. I want to do "this" and "this" is done I want to make sure I recieve "that". This would allow one to build up structure before actually worrying about the implementation, allowing you to focus on one problem at a time, structure, then implementation. Also the test seem like they also want to cohere to the rules from lots of other concepts from the book, as in the naming rule, "One word per concept" and the testing rule "Single Concept per Test".
+
+# Chapter 10, Classes
+
+This chapter is interesting as I'm currently studying a lot of design patterns. I think that I've followed the rule of keeping classes small quite well using generics and inheritance. By making the CardComponent an abstract generic class, I can create new card types with only a few lines of code. As seen in the CharacterCardComponent, which has the full functionality of a card, but is only 13 lines long.
+
+![image](https://github.com/wachtelhund/dnd_app/assets/85429142/0dbe23f4-dcb4-4f95-b5c9-00299065783d)
+
+# Chapter 11, Systems
+
+In Angular, and probably a lot of other frameworks, dependency injection is a big deal, it is how data and instances is passed between components in Angular. An example of this can be seen in the CardComponent which doesn't fetch any data on it's own, but instead recieves it via injection from either a CharacterCard or a MonsterCard. This is done both for the imagesources and the data displayed on the card.
+
+![image](https://github.com/wachtelhund/dnd_app/assets/85429142/e16b20c1-2000-491c-91ec-cc6384542152)
+
+
+
+
 
 
