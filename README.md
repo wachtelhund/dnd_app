@@ -28,6 +28,10 @@ Press the card to flip them, then hover over the monster name or class name to d
 
 ![image](https://github.com/wachtelhund/dnd_app/assets/85429142/78896833-13a1-45ec-af26-4ef4daa7c50f)
 
+### [Vision](https://github.com/wachtelhund/dnd_app/wiki/Vision)
+
+### [Requirements](https://github.com/wachtelhund/dnd_app/wiki/Requirements)
+
 ### For developers
 The application is developed using angular 16 in however it currently doesn't use the new signals, instead it uses Subjects and subscribtions from Rxjs.
 Feel free to refactor using the new signal syntax. The focus of this application is not visuals but instead scalable solutions which allows for growth over time.
