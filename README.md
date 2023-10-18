@@ -35,6 +35,10 @@ If you believe that the data supplied by the [dnd_api_helper](https://github.com
 
 Follow the the [installation steps](https://github.com/wachtelhund/dnd_app/edit/main/README.md#installation).
 
+#### Testing
+This application lacks unittests and instead resorts to manual testing.
+For testcases, see [testing wiki](https://github.com/wachtelhund/dnd_app/wiki/Testing)
+
 
 
 
