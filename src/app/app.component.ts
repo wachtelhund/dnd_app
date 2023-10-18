@@ -3,7 +3,7 @@ import { CharacterCreator, EncounterCreator } from 'dnd_api_helper';
 import { MonsterResponse } from 'dnd_api_helper/build/types/monsters/MonstersResponse';
 import { GenerationRequest } from './generation-form/GenerationRequest';
 import { FormControl, FormGroup } from '@angular/forms';
-import { FormEntry } from './generation-form/FormEntry';
+import { FormEntry, ValidationSpan } from './generation-form/FormEntry';
 import { Character } from 'dnd_api_helper/build/character/Character';
 
 @Component({
@@ -26,7 +26,7 @@ export class AppComponent {
       validationSpan: {
         lowerLimit: 1,
         upperLimit: 5
-      },
+      } as ValidationSpan,
       label: 'Amount of monsters',
       type: 'number'
     },
@@ -36,7 +36,7 @@ export class AppComponent {
       validationSpan: {
         lowerLimit: 1,
         upperLimit: 25
-      },
+      } as ValidationSpan,
       label: 'Challenge rating',
       type: 'number'
     }
@@ -52,7 +52,7 @@ export class AppComponent {
         validationSpan: {
           lowerLimit: 1,
           upperLimit: 4
-        },
+        } as ValidationSpan,
         label: 'Amount of Spells',
         type: 'number'
       },
@@ -62,7 +62,7 @@ export class AppComponent {
         validationSpan: {
           lowerLimit: 1,
           upperLimit: 4
-        },
+        } as ValidationSpan,
         label: 'Amount of Features',
         type: 'number'
       }
@@ -72,16 +72,24 @@ export class AppComponent {
   character: Character = {} as Character;
 
   async onGenerateMonsters($event: GenerationRequest) {
-    this.monsters = await this.encounterCreator.getRandomMonsters(
-        $event.formValue.amountOfMonsters,
-        $event.formValue.challengeRating
-      );
+    try {
+      this.monsters = await this.encounterCreator.getRandomMonsters(
+          $event.formValue.amountOfMonsters,
+          $event.formValue.challengeRating
+        );
+    } catch (error: any) {
+      alert(error.message);
+    }
   }
 
   async onGenerateCharacter($event: GenerationRequest) {
-    this.character = await this.characterCreator.generateRandomizedCharacter(
-        $event.formValue.amountOfSpells,
-        $event.formValue.amountOfFeatures
-      );
+    try {
+      this.character = await this.characterCreator.generateRandomizedCharacter(
+          $event.formValue.amountOfSpells,
+          $event.formValue.amountOfFeatures
+        );
+    } catch (error: any) {
+      alert(error.message);
+    }
   }
 }

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MonsterResponse } from 'dnd_api_helper/build/types/monsters/MonstersResponse';
 import { CardComponent } from '../card/card.component';
@@ -27,11 +26,10 @@ export class MonsterCardComponent extends CardComponent<MonsterResponse> {
   }
 
   private async setMonsterImg() {
-    if (this.data?.image.includes('undefined')) {
+    if (this.data?.image?.includes('undefined')) {
       this.monsterImg = "assets/images/missing.jpg";
     } else {
       this.monsterImg = this.data?.image || "assets/images/missing.jpg";
     }
   }
-
 }

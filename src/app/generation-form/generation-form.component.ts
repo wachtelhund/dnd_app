@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { GenerationRequest } from './GenerationRequest';
 import { filter, tap } from 'rxjs';
 import { FormEntry, ValidationSpan } from './FormEntry';
@@ -11,8 +11,9 @@ import { FormEntry, ValidationSpan } from './FormEntry';
 })
 export class GenerationFormComponent {
   @Output() onGenerateSubmit = new EventEmitter<GenerationRequest>();
-  @Input('formEntries') formEntries: FormEntry[] = [];
   formGroup = new FormGroup({});
+
+  @Input('formEntries') formEntries: FormEntry[] = [];
 
   ngOnInit() {
     this.formEntries.forEach(formEntry => {
